@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Chatbot Settings</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body{ padding:16px; width:420px }
+    .card{ background:var(--card); border:1px solid var(--border); border-radius:14px; padding:14px; box-shadow:var(--shadow) }
+    .row{ margin-bottom:12px }
+    label{ display:block; margin-bottom:6px; font-weight:700 }
+    input, select{
+      width:100%; padding:10px 12px; border:1px solid var(--border);
+      border-radius:10px; background:var(--card); color:var(--text);
+    }
+    .grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+    .muted{ color:var(--muted); font-size:12px }
+    .btnbar{ display:flex; gap:10px; margin-top:12px }
+  </style>
+</head>
+<body>
+  <h2 style="margin-top:0">Settings</h2>
+  <div class="card">
+    <div class="row">
+      <label for="provider">Provider</label>
+      <select id="provider">
+        <option value="openai">OpenAI</option>
+        <option value="gemini">Google Gemini</option>
+        <option value="openrouter">OpenRouter</option>
+        <option value="groq">Groq</option>
+      </select>
+      <div class="muted">Choose which API the popup uses.</div>
+    </div>
+
+    <div class="grid">
+      <div class="row">
+        <label for="openaiKey">OpenAI API Key</label>
+        <input id="openaiKey" type="password" placeholder="sk-..." />
+      </div>
+      <div class="row">
+        <label for="openaiModel">OpenAI Model</label>
+        <input id="openaiModel" type="text" value="gpt-5" />
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="row">
+        <label for="geminiKey">Gemini API Key</label>
+        <input id="geminiKey" type="password" placeholder="AIza..." />
+      </div>
+      <div class="row">
+        <label for="geminiModel">Gemini Model</label>
+        <input id="geminiModel" type="text" value="gemini-1.5-flash" />
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="row">
+        <label for="openrouterKey">OpenRouter API Key</label>
+        <input id="openrouterKey" type="password" placeholder="sk-or-v1-..." />
+      </div>
+      <div class="row">
+        <label for="openrouterModel">OpenRouter Model</label>
+        <input id="openrouterModel" type="text" value="openrouter/auto" />
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="row">
+        <label for="groqKey">Groq API Key</label>
+        <input id="groqKey" type="password" placeholder="gsk_..." />
+      </div>
+      <div class="row">
+        <label for="groqModel">Groq Model</label>
+        <input id="groqModel" type="text" value="llama-3.1-8b-instant" />
+      </div>
+    </div>
+
+    <div class="btnbar">
+      <button id="save" class="btn primary">Save</button>
+      <button id="clear" class="btn ghost" title="Clear all">Clear All</button>
+    </div>
+    <p class="muted">Keys are stored in Chrome sync storage on this device.</p>
+  </div>
+
+  <script src="options.js" defer></script>
+</body>
+</html>

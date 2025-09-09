@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "GPT, Gemini, OpenRouter & Groq Chatbot",
+  "version": "1.3.0",
+  "description": "A modern, sleek chatbot popup for OpenAI, Google Gemini, OpenRouter, or Groq.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "GPT, Gemini, OpenRouter & Groq Chatbot"
+  },
+  "options_page": "options.html",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://openrouter.ai/*",
+    "https://api.groq.com/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
