@@ -1,6 +1,6 @@
 # Multi AI Chatbot Chrome Extension
 
-A lightweight and modern **OpenAI**, **Google Gemini**, **OpenRouter**, and **Groq** API AI Chatbot for Chrome extension that lets you chat with multiple AI providers from a single popup.
+A lightweight and modern **OpenAI**, **Google Gemini**, **OpenRouter**, **DeepSeek**, and **Groq** API AI Chatbot for Chrome extension that lets you chat with multiple AI providers from a single popup.
 
 ---
 
