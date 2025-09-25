@@ -33,12 +33,13 @@ function setBusy(busy){
   if (busy) inputEl.setAttribute("disabled", "true"); else inputEl.removeAttribute("disabled");
 }
 
-function updateMeta({provider, openaiModel, geminiModel, openrouterModel, groqModel}){
+function updateMeta({provider, openaiModel, geminiModel, openrouterModel, groqModel, deepseekModel}){
   let label = "OpenAI";
   let model = openaiModel;
   if (provider === "gemini") { label = "Gemini"; model = geminiModel; }
   if (provider === "openrouter") { label = "OpenRouter"; model = openrouterModel; }
   if (provider === "groq") { label = "Groq"; model = groqModel; }
+  if (provider === "deepseek") { label = "DeepSeek"; model = deepseekModel; }
   metaEl.textContent = `${label} • ${model || "—"}`;
 }
 
@@ -49,7 +50,8 @@ function getSettings(){
       openaiApiKey:"", openaiModel:"gpt-5",
       geminiApiKey:"", geminiModel:"gemini-1.5-flash",
       openrouterApiKey:"", openrouterModel:"openrouter/auto",
-      groqApiKey:"", groqModel:"llama-3.1-8b-instant"
+      groqApiKey:"", groqModel:"llama-3.1-8b-instant",
+      deepseekApiKey:"", deepseekModel:"deepseek-chat"
     },d=>{ updateMeta(d); r(d); });
   });
 }
@@ -94,8 +96,7 @@ async function callOpenRouter({ apiKey, model, messages, signal }){
     headers: {
       "Content-Type": "application/json",
       "Authorization": `Bearer ${apiKey}`,
-      "X-Title": "GPT-Gemini-OpenRouter-Groq Chatbot"
-      // "HTTP-Referer": "https://your.site"  // optional
+      "X-Title": "GPT-Gemini-OpenRouter-Groq-DeepSeek Chatbot"
     },
     body: JSON.stringify({ model, messages, temperature: 0 })
   });
@@ -104,9 +105,24 @@ async function callOpenRouter({ apiKey, model, messages, signal }){
   return data.choices?.[0]?.message?.content || "";
 }
 
-/* NEW: Groq (OpenAI-compatible endpoint) */
+/* Groq (OpenAI-compatible endpoint) */
 async function callGroq({ apiKey, model, messages, signal }){
   const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST", signal,
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`
+    },
+    body: JSON.stringify({ model, messages, temperature: 0 })
+  });
+  if (!res.ok) throw new Error(await res.text());
+  const data = await res.json();
+  return data.choices?.[0]?.message?.content || "";
+}
+
+/* NEW: DeepSeek (OpenAI-compatible style) */
+async function callDeepSeek({ apiKey, model, messages, signal }){
+  const res = await fetch("https://api.deepseek.com/v1/chat/completions", {
     method: "POST", signal,
     headers: {
       "Content-Type": "application/json",
@@ -141,6 +157,8 @@ async function sendMessage(){
       text = await callOpenRouter({ apiKey:set.openrouterApiKey, model:set.openrouterModel, messages:history, signal:abortCtrl.signal });
     } else if (set.provider === "groq") {
       text = await callGroq({ apiKey:set.groqApiKey, model:set.groqModel, messages:history, signal:abortCtrl.signal });
+    } else if (set.provider === "deepseek") {
+      text = await callDeepSeek({ apiKey:set.deepseekApiKey, model:set.deepseekModel, messages:history, signal:abortCtrl.signal });
     } else {
       text = await callOpenAI({ apiKey:set.openaiApiKey, model:set.openaiModel, messages:history, signal:abortCtrl.signal });
     }
