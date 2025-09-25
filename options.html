@@ -28,6 +28,7 @@
         <option value="gemini">Google Gemini</option>
         <option value="openrouter">OpenRouter</option>
         <option value="groq">Groq</option>
+        <option value="deepseek">DeepSeek</option>
       </select>
       <div class="muted">Choose which API the popup uses.</div>
     </div>
@@ -73,6 +74,18 @@
       <div class="row">
         <label for="groqModel">Groq Model</label>
         <input id="groqModel" type="text" value="llama-3.1-8b-instant" />
+      </div>
+    </div>
+
+    <!-- NEW: DeepSeek -->
+    <div class="grid">
+      <div class="row">
+        <label for="deepseekKey">DeepSeek API Key</label>
+        <input id="deepseekKey" type="password" placeholder="sk-..." />
+      </div>
+      <div class="row">
+        <label for="deepseekModel">DeepSeek Model</label>
+        <input id="deepseekModel" type="text" value="deepseek-chat" />
       </div>
     </div>
 
