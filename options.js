@@ -8,6 +8,8 @@ const els = {
   openrouterModel: document.getElementById("openrouterModel"),
   groqKey: document.getElementById("groqKey"),
   groqModel: document.getElementById("groqModel"),
+  deepseekKey: document.getElementById("deepseekKey"),
+  deepseekModel: document.getElementById("deepseekModel"),
   save: document.getElementById("save"),
   clear: document.getElementById("clear")
 };
@@ -18,7 +20,8 @@ function load(){
     openaiApiKey:"", openaiModel:"gpt-5",
     geminiApiKey:"", geminiModel:"gemini-1.5-flash",
     openrouterApiKey:"", openrouterModel:"openrouter/auto",
-    groqApiKey:"", groqModel:"llama-3.1-8b-instant"
+    groqApiKey:"", groqModel:"llama-3.1-8b-instant",
+    deepseekApiKey:"", deepseekModel:"deepseek-chat"
   }, d=>{
     els.provider.value = d.provider;
     els.openaiKey.value = d.openaiApiKey;
@@ -29,6 +32,8 @@ function load(){
     els.openrouterModel.value = d.openrouterModel;
     els.groqKey.value = d.groqApiKey;
     els.groqModel.value = d.groqModel;
+    els.deepseekKey.value = d.deepseekApiKey;
+    els.deepseekModel.value = d.deepseekModel;
   });
 }
 
@@ -42,7 +47,9 @@ els.save.addEventListener("click", ()=>{
     openrouterApiKey: els.openrouterKey.value.trim(),
     openrouterModel: els.openrouterModel.value.trim(),
     groqApiKey: els.groqKey.value.trim(),
-    groqModel: els.groqModel.value.trim()
+    groqModel: els.groqModel.value.trim(),
+    deepseekApiKey: els.deepseekKey.value.trim(),
+    deepseekModel: els.deepseekModel.value.trim()
   }, ()=>{
     els.save.textContent = "Saved ✓";
     setTimeout(()=> els.save.textContent = "Save", 900);
