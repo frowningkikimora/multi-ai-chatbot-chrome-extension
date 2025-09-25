@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "GPT, Gemini, OpenRouter & Groq Chatbot",
-  "version": "1.3.0",
-  "description": "A modern, sleek chatbot popup for OpenAI, Google Gemini, OpenRouter, or Groq.",
+  "name": "GPT, Gemini, OpenRouter, Groq & DeepSeek Chatbot",
+  "version": "1.4.0",
+  "description": "A modern, sleek chatbot popup for OpenAI, Google Gemini, OpenRouter, Groq, or DeepSeek.",
   "action": {
     "default_popup": "popup.html",
-    "default_title": "GPT, Gemini, OpenRouter & Groq Chatbot"
+    "default_title": "GPT, Gemini, OpenRouter, Groq & DeepSeek Chatbot"
   },
   "options_page": "options.html",
   "permissions": ["storage"],
@@ -13,7 +13,8 @@
     "https://api.openai.com/*",
     "https://generativelanguage.googleapis.com/*",
     "https://openrouter.ai/*",
-    "https://api.groq.com/*"
+    "https://api.groq.com/*",
+    "https://api.deepseek.com/*"
   ],
   "icons": {
     "16": "icons/icon16.png",
